@@ -1,0 +1,28 @@
+express Done
+nodemon Done
+https Done
+cors Done
+mongoose Done
+ejs Done
+bcryptjs Done
+
+
+Some Key Points
+"start": "node ./src/server.js",
+
+
+{
+    "author_name": "APJ Abdul Kalam",
+    "author_bio": {
+        "about" : "Former president of india",
+        "proffesion": "sintest",
+        "nationality": "indian",
+        "dob": "20-11-1943"
+    },
+    "author_quotes": [
+        {
+         "tags": ["motivational", "happy", "clam"],
+         "quote": "Let the journey Begins"   
+        }
+    ]
+}
