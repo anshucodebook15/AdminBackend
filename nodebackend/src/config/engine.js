@@ -2,6 +2,7 @@ require("dotenv").config({ path: "config.env" });
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+var cors = require("cors");
 
 exports.configEngine = () => {
   // Express App
@@ -18,6 +19,9 @@ exports.configEngine = () => {
 
   //  Set View Path
   app.set("views", path.join(__dirname, "../views"));
+
+  // Set Cors
+  app.use(cors());
 
   return { app };
 };

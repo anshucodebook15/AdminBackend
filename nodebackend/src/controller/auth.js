@@ -6,21 +6,21 @@ const sendEmail = require("../helpers/sendEmail");
 
 // Auth Controllers
 exports.register = async (req, res, next) => {
-  // Import UI
+  // 1st We Bring the details
   const { username, email, password } = req.body;
 
-  console.log(username, email, password);
-
   try {
+    // Create new User and save the data into a variable
     const newuser = await user.create({
       username,
       email,
       password, // Password Must Be Encrypted
     });
 
-    // Send Token
+    // Generate token with JWT and send Response back
     sendToken(newuser, 201, res);
   } catch (error) {
+    // Error Part do it later
     next(error);
   }
 };
@@ -28,14 +28,14 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
-  // Check Whether Email and Password is matching
+  // // Check Whether Email and Password is comming
   if (!email || !password) {
     return next(new ErrorResponse("Invalid Id and Password", 400));
   }
 
   // try and catch
   try {
-    // 1 Get User Details from database with provided Email and Password
+    // 1 Get User Details from database with provided Email and Password   Working
     const findUser = await user.findOne({ email }).select("+password");
 
     // 2 If user not found the set back with an error
@@ -50,14 +50,17 @@ exports.login = async (req, res, next) => {
     if (!isMatch) {
       return next(new ErrorResponse("Invalid Password", 404));
     }
-
     // 5 if the email and password are matched then return with token
-    // Send Token
+    // Generate token with JWT and send Response back
     sendToken(findUser, 200, res); // Token is made up of {id, JWT_SECRET, JWT_EXPIREIN}
   } catch (error) {
+    // Error Part do it later
     next(error);
   }
 };
+
+
+
 exports.forgotPassword = async (req, res, next) => {
   const { email } = req.body;
 
