@@ -20,6 +20,8 @@ export default function Login() {
             <p className="login-box-msg">Sign In</p>
 
             <form onSubmit={handleSubmit}>
+
+
               <div className="input-group mb-3">
                 <input
                   type="email"
@@ -35,6 +37,8 @@ export default function Login() {
                   </div>
                 </div>
               </div>
+
+
               <div className="input-group mb-3">
                 <input
                   type="password"
@@ -50,6 +54,9 @@ export default function Login() {
                   </div>
                 </div>
               </div>
+
+
+
               <div className="row">
                 <div className="col-8">
                   <div className="icheck-primary">
@@ -66,6 +73,9 @@ export default function Login() {
                 {/* /.col */}
               </div>
             </form>
+
+
+            
 
             {/* /.social-auth-links */}
 
