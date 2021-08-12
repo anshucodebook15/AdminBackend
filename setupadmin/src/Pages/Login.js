@@ -2,6 +2,7 @@ import React from "react";
 // import { useState, useEffect, useRef } from "react";
 import { useLogform } from "../utils/Useform";
 
+
 export default function Login() {
   const { values, setValues, errors, SetErrors, handleSubmit, handleChange } =
     useLogform();
@@ -14,14 +15,13 @@ export default function Login() {
             <b>Codevweb</b>
           </a>
         </div>
+
         {/* /.login-logo */}
         <div className="card">
           <div className="card-body login-card-body">
             <p className="login-box-msg">Sign In</p>
 
             <form onSubmit={handleSubmit}>
-
-
               <div className="input-group mb-3">
                 <input
                   type="email"
@@ -37,7 +37,6 @@ export default function Login() {
                   </div>
                 </div>
               </div>
-
 
               <div className="input-group mb-3">
                 <input
@@ -55,8 +54,6 @@ export default function Login() {
                 </div>
               </div>
 
-
-
               <div className="row">
                 <div className="col-8">
                   <div className="icheck-primary">
@@ -73,9 +70,6 @@ export default function Login() {
                 {/* /.col */}
               </div>
             </form>
-
-
-            
 
             {/* /.social-auth-links */}
 

@@ -1,8 +1,9 @@
 require("dotenv").config({ path: "config.env" });
 const express = require("express");
+var cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
-var cors = require("cors");
+var cookie = require("cookie-parser");
 
 exports.configEngine = () => {
   // Express App
@@ -20,8 +21,16 @@ exports.configEngine = () => {
   //  Set View Path
   app.set("views", path.join(__dirname, "../views"));
 
-  // Set Cors
-  app.use(cors());
+  // Setting up cookie Parser
+  app.use(cookie());
+
+  // Cors
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+    })
+  );
 
   return { app };
 };
@@ -48,14 +57,8 @@ exports.includesRoutes = (app) => {
   // Include Routes
   const authR = require("../routes/authR");
   const private = require("../routes/private");
-  const topicR = require("../routes/topicR");
-  const authorR = require("../routes/authorR");
-  const quoteR = require("../routes/quoteR");
 
   // Enables Routes
   app.use(authR);
   app.use(private);
-  app.use(topicR);
-  app.use(authorR);
-  app.use(quoteR);
 };

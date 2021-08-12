@@ -2,6 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { authApi } from "../Apis/authApi";
 
+// Axios
+axios.defaults.withCredentials = true;
+
 export const useRegform = () => {
   // Form State
   const [values, setValues] = useState({
@@ -73,11 +76,25 @@ export const useLogform = () => {
   // HandleSubmit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Logdata
+    const logdata = {
+      email: values.email,
+      password: values.password,
+    };
+
+    // Axios Credentials
+    const credentials = {
+      withCredentials: true,
+      headers: {
+        "Access-Control-Allow-Origin": "true",
+        "Content-Type": "application/json",
+      },
+    };
+
+    // Send Data to get Feedback
     await axios
-      .post(authApi.login, {
-        email: values.email,
-        password: values.password,
-      })
+      .post(authApi.login, logdata, credentials)
       .then(function (result) {
         console.log(result);
       })

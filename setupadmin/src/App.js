@@ -7,7 +7,6 @@ import Register from "./Pages/Register";
 import Notfound from "./Pages/Notfound";
 import "./App.css";
 
-
 function App() {
   return (
     <>
