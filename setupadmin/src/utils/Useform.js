@@ -1,11 +1,18 @@
 import { useState, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import cookie from 'react-cookies'
 import axios from "axios";
-import { authApi } from "../Apis/authApi";
+import { login, register } from "../Apis/authApi";
+
+import { useAuthcontext } from "../Contexts/authContext";
 
 // Axios
 axios.defaults.withCredentials = true;
 
+
 export const useRegform = () => {
+  // Use contex
+
   // Form State
   const [values, setValues] = useState({
     username: "",
@@ -29,20 +36,22 @@ export const useRegform = () => {
     e.preventDefault();
 
     // Validation Fields
-
     if (values.password !== values.repassword) {
       console.log("Incorrect Password Match");
     } else {
-      await axios
-        .post(authApi.register, {
-          username: values.username,
-          email: values.email,
-          password: values.password,
-        })
-        .then(function (result) {
-          console.log(result);
-        })
-        .catch((err) => console.log(err));
+      const formData = {
+        username: values.username,
+        email: values.email,
+        password: values.password,
+      };
+
+      // Register Data
+      const regData = await register(formData);
+
+      console.log(regData);
+
+      // Store cookies
+      // setLogstate();
     }
   };
 
@@ -57,6 +66,11 @@ export const useRegform = () => {
 };
 
 export const useLogform = () => {
+  // Hooks
+  const history = useHistory();
+
+  // Use context
+
   // Form State
   const [values, setValues] = useState({
     email: "",
@@ -83,22 +97,16 @@ export const useLogform = () => {
       password: values.password,
     };
 
-    // Axios Credentials
-    const credentials = {
-      withCredentials: true,
-      headers: {
-        "Access-Control-Allow-Origin": "true",
-        "Content-Type": "application/json",
-      },
-    };
+    // Login Data
+    const loginData = await login(logdata);
 
-    // Send Data to get Feedback
-    await axios
-      .post(authApi.login, logdata, credentials)
-      .then(function (result) {
-        console.log(result);
-      })
-      .catch((err) => console.log(err));
+    // You may Loss data 
+    localStorage.setItem('cwlogin', true);
+
+    // Redirect To Dashboard
+    history.push("/dashboard");
+
+    console.log(loginData);
   };
 
   return {
@@ -110,3 +118,22 @@ export const useLogform = () => {
     handleSubmit,
   };
 };
+
+export const useLogout = () => {
+  const history = useHistory();
+
+  const handleLogout = () => {
+
+  // Delete Cookie and Just Logout
+    cookie.remove('name', { path: '/' })
+
+  //  Redirect To login page
+    history.push('/');
+
+  }
+
+  return {
+   handleLogout
+  };
+
+}

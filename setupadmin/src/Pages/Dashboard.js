@@ -1,16 +1,20 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import Adminlayout from "../layouts/Adminlayout";
 import Pageheader from "../components/Pageheader";
 import Pagecontainer from "../components/Pagecontainer";
 
+import { useAuthcontext } from "../Contexts/authContext";
+
 export default function Dashboard() {
+
+  
+
   return (
     <div className="wrapper">
       <Adminlayout>
         <Pageheader header={"Dashboard"} />
         <Pagecontainer>
-
-
           <div>
             {/* Small boxes (Stat box) */}
             <div className="row">
@@ -850,10 +854,6 @@ export default function Dashboard() {
             </div>
             {/* /.row (main row) */}
           </div>
-
-
-
-          
         </Pagecontainer>
       </Adminlayout>
     </div>

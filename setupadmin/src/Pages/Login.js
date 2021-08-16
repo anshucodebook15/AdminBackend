@@ -1,11 +1,13 @@
 import React from "react";
-// import { useState, useEffect, useRef } from "react";
 import { useLogform } from "../utils/Useform";
 
+// Google Button
+import { GoogleLogin } from "react-google-login";
 
 export default function Login() {
   const { values, setValues, errors, SetErrors, handleSubmit, handleChange } =
     useLogform();
+  
 
   return (
     <div className="hold-transition login-page">
@@ -67,6 +69,7 @@ export default function Login() {
                     Sign In
                   </button>
                 </div>
+
                 {/* /.col */}
               </div>
             </form>
@@ -91,3 +94,26 @@ export default function Login() {
     </div>
   );
 }
+
+// <div className="row">
+//                   <div className="col text-center">
+//                     <GoogleLogin
+//                       clientId="338949455188-p5ej29s1rkkc1tl5okp49liu6ufivlmc.apps.googleusercontent.com"
+//                       render={(renderProps) => {
+//                         return (
+//                           <button
+//                             type="submit"
+//                             className="btn btn-primary btn-block"
+//                             onClick={renderProps.onClick}
+//                             disabled={renderProps.disabled}
+//                           >
+//                             SignIn With Google
+//                           </button>
+//                         );
+//                       }}
+//                       onSuccess={googleSuccess}
+//                       onFailure={googleFailure}
+//                       cookiePolicy={"single_host_origin"}
+//                     />
+//                   </div>
+//                 </div>

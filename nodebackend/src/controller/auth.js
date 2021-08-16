@@ -19,6 +19,7 @@ exports.auth = {
 
       // Generate token with JWT and send Response back
       sendToken(newuser, 201, res);
+
     } catch (error) {
       // Error Part do it later
       next(error);
@@ -31,10 +32,11 @@ exports.auth = {
     if (!email || !password) {
       return next(new ErrorResponse("Invalid Id and Password", 400));
     }
-    // try and catch
+
     try {
       // 1 Get User Details from database with provided Email and Password   Working
       const findUser = await user.findOne({ email }).select("+password");
+
       // 2 If user not found the set back with an error
       if (!findUser) {
         return next(new ErrorResponse("Invalid Id and Password", 400));
@@ -48,8 +50,6 @@ exports.auth = {
         return next(new ErrorResponse("Invalid Password", 404));
       }
       // 5 if the email and password are matched then return with token
-
-      // Generate token with JWT and send Response back
       sendToken(findUser, 200, res); // Token is made up of {id, JWT_SECRET, JWT_EXPIREIN}
     } catch (error) {
       // Error Part do it later
@@ -133,8 +133,7 @@ exports.auth = {
 
 //  Some Refactor Code
 const sendToken = (findUser, statusCode, res) => {
-  const token = findUser.getSignedToken();
-
+  const token = `Bearer ${findUser.getSignedToken()}`;
   // SetCookie for Authentication
   res
     .status(statusCode)
@@ -144,11 +143,3 @@ const sendToken = (findUser, statusCode, res) => {
     })
     .json({ success: true, message: "saved" });
 };
-
-// res
-// .status(201)
-// .cookie("name", "Rahul Aradhya", {
-//   sameSite: "strict",
-//   path: "/",
-// })
-// .send("Cookies has been Initiated");

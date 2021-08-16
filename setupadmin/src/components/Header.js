@@ -1,6 +1,13 @@
 import React from "react";
 
+import { useLogout } from "../utils/Useform";
+
 export default function Header() {
+
+ const { handleLogout } = useLogout();
+  
+
+
   return (
     <div>
       {/* Navbar */}
@@ -195,10 +202,12 @@ export default function Header() {
               className="nav-link"
               data-widget="control-sidebar"
               data-slide="true"
-              href="#"
               role="button"
+              title="logout"
+              onClick={handleLogout}
             >
-              <i className="fas fa-th-large" />
+            <i class="fas fa-sign-out-alt"></i>
+              
             </a>
           </li>
         </ul>

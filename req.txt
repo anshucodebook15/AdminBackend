@@ -3,3 +3,15 @@
 4. Graphql
 5. React Helmet
 6. 
+
+
+
+Client ID - 338949455188-p5ej29s1rkkc1tl5okp49liu6ufivlmc.apps.googleusercontent.com
+Client Secret -338949455188-p5ej29s1rkkc1tl5okp49liu6ufivlmc.apps.googleusercontent.com
+
+
+// Problem
+
+1. When signin, on reload It will Again loss the state and reback to signin page => Problem Solved
+
+2. 
