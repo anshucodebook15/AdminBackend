@@ -1,25 +1,24 @@
 import React, { Component, useState, useEffect } from "react";
 import { Redirect, Route } from "react-router-dom";
 import { useAuthcontext } from "../Contexts/authContext";
-import cookie from 'react-cookies'
+import cookie from "react-cookies";
 
 export const Protected = ({ component: Component, ...rest }) => {
-  
   // Is Login State True Make Let the user get in it depend on state
   // const isSignup = JSON.parse(localStorage.getItem('cwlogin'));
-  const {login} = useAuthcontext();
+  // const {login} = useAuthcontext();
 
-  const token = cookie.load('name');
+  const token = cookie.load("name");
 
   return (
     <Route
       {...rest}
       render={(props) => {
-        if(token){
+        if (token) {
           return <Component {...props} />;
-        }else{
+        } else {
           return <Redirect to={{ pathname: "/" }} />;
-        }   
+        }
       }}
     />
   );

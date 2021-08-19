@@ -5,6 +5,7 @@ import Users from "./Pages/Users";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Notfound from "./Pages/Notfound";
+import Profileform from "./Tests/Profileform";
 
 // Protected Routes
 import { Protected } from "./Routes/Protected";
@@ -22,6 +23,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/profile" component={Profileform} />
             <Protected path="/dashboard" component={Dashboard} />
             <Protected path="/users" component={Users} />
             <Route path="/*" component={Notfound} />

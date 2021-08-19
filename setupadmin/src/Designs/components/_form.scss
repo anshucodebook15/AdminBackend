@@ -1,0 +1,23 @@
+.bod {
+  border: 1px solid red;
+}
+
+.imgbox {
+  width: 120px;
+  height: 120px;
+}
+
+.imgtest {
+  width: 100%;
+  object-fit: contain;
+}
+
+.inpupload {
+  display: none;
+}
+
+.lblupload {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  background-color: rgb(255, 247, 247);
+}

@@ -62,7 +62,7 @@ export default function Sidebar() {
                 <a href="#" className="nav-link active">
                   <i className="nav-icon fas fa-tachometer-alt" />
                   <p>
-                    Starter Pages
+                    Categories
                     <i className="right fas fa-angle-left" />
                   </p>
                 </a>
