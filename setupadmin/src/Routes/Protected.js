@@ -8,7 +8,7 @@ export const Protected = ({ component: Component, ...rest }) => {
   // const isSignup = JSON.parse(localStorage.getItem('cwlogin'));
   // const {login} = useAuthcontext();
 
-  const token = cookie.load("name");
+  const token = cookie.load("autok");
 
   return (
     <Route

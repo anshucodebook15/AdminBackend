@@ -25,7 +25,7 @@ const userSchema = new schema({
   password: {
     type: String,
     required: [true, "Please Provide a Password"],
-    minlength: 6,
+    minlength: [6, "Min Must be 6"],
     select: false,
   },
   resetPasswordToken: String,

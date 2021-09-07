@@ -15,3 +15,12 @@ Client Secret -338949455188-p5ej29s1rkkc1tl5okp49liu6ufivlmc.apps.googleusercont
 1. When signin, on reload It will Again loss the state and reback to signin page => Problem Solved
 
 2. 
+
+
+
+
+// Some Usefull Resources
+https://www.youtube.com/watch?v=s5YoXms0ECs
+
+// Errors
+https://www.youtube.com/watch?v=IjbZB0v-hQs

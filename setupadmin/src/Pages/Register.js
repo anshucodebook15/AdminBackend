@@ -2,9 +2,11 @@ import React from "react";
 // import { useState, useEffect, useRef } from "react";
 import { useRegform } from "../utils/Useform";
 
+// Import TextField
+import { Textfield } from "../components/Textfield";
+
 export default function Register() {
-  const { values, setValues, errors, SetErrors, handleSubmit, handleChange } =
-    useRegform();
+  const { values, errors, disable, handleSubmit, handleChange } = useRegform();
 
   return (
     <div className="hold-transition register-page">
@@ -14,74 +16,57 @@ export default function Register() {
             <b>Codevweb</b>
           </a>
         </div>
+
+        {errors.other && (
+          <div class="alert alert-danger" role="alert">
+            {errors.other}
+          </div>
+        )}
+
         <div className="card">
           <div className="card-body register-card-body">
             <p className="login-box-msg">Register a new Admin</p>
 
             <form onSubmit={handleSubmit}>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Full name"
-                  name="username"
-                  value={values.username}
-                  onChange={handleChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-user" />
-                  </div>
-                </div>
-              </div>
+              <Textfield
+                type={"text"}
+                error={errors.username}
+                placeholder={"First Name"}
+                name={"username"}
+                icon={"fa-user"}
+                value={values.username}
+                handler={handleChange}
+              />
 
-              <div className="input-group mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-envelope" />
-                  </div>
-                </div>
-              </div>
+              <Textfield
+                type={"email"}
+                error={errors.email}
+                placeholder={"Email"}
+                name={"email"}
+                icon={"fa-envelope"}
+                value={values.email}
+                handler={handleChange}
+              />
 
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  name="password"
-                  value={values.password}
-                  onChange={handleChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-lock" />
-                  </div>
-                </div>
-              </div>
+              <Textfield
+                type={"password"}
+                error={errors.password}
+                placeholder={"Password"}
+                name={"password"}
+                icon={"fa-lock"}
+                value={values.password}
+                handler={handleChange}
+              />
 
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Retype password"
-                  name="repassword"
-                  value={values.repassword}
-                  onChange={handleChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-lock" />
-                  </div>
-                </div>
-              </div>
+              <Textfield
+                type={"password"}
+                error={errors.repassword}
+                placeholder={"Retype Password"}
+                name={"repassword"}
+                icon={"fa-lock"}
+                value={values.repassword}
+                handler={handleChange}
+              />
 
               <div className="row">
                 <div className="col-8">
@@ -100,7 +85,11 @@ export default function Register() {
 
                 {/* /.col */}
                 <div className="col-4">
-                  <button type="submit" className="btn btn-primary btn-block">
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block"
+                    disabled={disable}
+                  >
                     Register
                   </button>
                 </div>
@@ -109,7 +98,7 @@ export default function Register() {
             </form>
 
             <div className="text-center mt-3">
-              <a href="/login" className="text-center">
+              <a href="/" className="text-center">
                 I already have a membership
               </a>
             </div>

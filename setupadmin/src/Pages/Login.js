@@ -1,13 +1,15 @@
 import React from "react";
 import { useLogform } from "../utils/Useform";
 
+// TextFields
+import { Textfield } from "../components/Textfield";
+
 // Google Button
 import { GoogleLogin } from "react-google-login";
 
 export default function Login() {
   const { values, setValues, errors, SetErrors, handleSubmit, handleChange } =
     useLogform();
-  
 
   return (
     <div className="hold-transition login-page">
@@ -18,43 +20,37 @@ export default function Login() {
           </a>
         </div>
 
+        {errors.other && (
+          <div class="alert alert-danger" role="alert">
+            {errors.other}
+          </div>
+        )}
+
         {/* /.login-logo */}
         <div className="card">
           <div className="card-body login-card-body">
-            <p className="login-box-msg">Sign In</p>
+            <p className="login-box-msg">Admin Sign In</p>
 
             <form onSubmit={handleSubmit}>
-              <div className="input-group mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-envelope" />
-                  </div>
-                </div>
-              </div>
+              <Textfield
+                type={"email"}
+                error={errors.email}
+                placeholder={"Email"}
+                name={"email"}
+                icon={"fa-envelope"}
+                value={values.email}
+                handler={handleChange}
+              />
 
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  name="password"
-                  value={values.password}
-                  onChange={handleChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-lock" />
-                  </div>
-                </div>
-              </div>
+              <Textfield
+                type={"password"}
+                error={errors.password}
+                placeholder={"Password"}
+                name={"password"}
+                icon={"fa-lock"}
+                value={values.password}
+                handler={handleChange}
+              />
 
               <div className="row">
                 <div className="col-8">
@@ -117,3 +113,33 @@ export default function Login() {
 //                     />
 //                   </div>
 //                 </div>
+// <div className="input-group mb-3">
+// <input
+//   type="email"
+//   className="form-control"
+//   placeholder="Email"
+//   name="email"
+//   value={values.email}
+//   onChange={handleChange}
+// />
+// <div className="input-group-append">
+//   <div className="input-group-text">
+//     <span className="fas fa-envelope" />
+//   </div>
+// </div>
+// </div>
+// <div className="input-group mb-3">
+// <input
+//   type="password"
+//   className="form-control"
+//   placeholder="Password"
+//   name="password"
+//   value={values.password}
+//   onChange={handleChange}
+// />
+// <div className="input-group-append">
+//   <div className="input-group-text">
+//     <span className="fas fa-lock" />
+//   </div>
+// </div>
+// </div>

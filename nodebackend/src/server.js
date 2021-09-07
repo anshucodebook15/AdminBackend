@@ -4,7 +4,9 @@ const {
   connectMongoose,
   includesRoutes,
 } = require("./config/engine");
-const errorHandler = require("./middlewares/error");
+const apiErrorhandler = require("./errors/apiErrorHandler");
+
+// const errorHandler = require("./middlewares/error");
 
 // Start Engine
 const { app } = configEngine();
@@ -18,35 +20,25 @@ app.set("views", path.join(__dirname, "views"));
 // Inculde Routes
 includesRoutes(app);
 
-
 // Home Route
 app.get("/", (req, res) => {
   res.render("home");
 });
 
-// ErrorHandler middleWare
-app.use(errorHandler);
+
+app.use(apiErrorhandler);
 
 // 404 error page
 app.use("/*", (req, res) => {
   res.render("404");
 });
 
-// Previous ErrorResponse
 
-// This is a 404 Middleware Function
-// app.use((req, res, next) => {
-//   const err = new Error("Not Found");
-//   err.status = 404;
-//   next(err);
-// });
+// ErrorHandler middleWare
+// app.use(errorHandler);
 
-// Middleware
 // app.use((err, req, res, next) => {
-//   res.status(err.status || 500).json({
-//     error: {
-//       status: err.status || 500,
-//       message: err.message,
-//     },
+//   res.status(400).json({
+//     error: err,
 //   });
 // });
